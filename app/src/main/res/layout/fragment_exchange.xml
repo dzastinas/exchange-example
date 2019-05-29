@@ -5,7 +5,6 @@
         tools:context="net.justinas.minitemplate.view.ListViewFragment">
 
     <data>
-
         <variable
                 name="viewModel"
                 type="net.justinas.exercise.lib.view.ExchangeViewModel"/>
@@ -43,12 +42,12 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:title="@string/app_name"
+                app:title="@string/app_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@android:drawable/ic_menu_mapmode"
-                app:titleTextColor="@color/colorPrimaryDark"
+                app:titleTextColor="@color/primaryTextColor"
                 tools:title="Exchange"/>
 
 
@@ -132,6 +131,16 @@
                 tools:text="JPY"
         />
 
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                app:layout_constraintBottom_toTopOf="@+id/select_from"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="FROM"
+        />
+
         <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/select_from"
                 android:layout_width="wrap_content"
@@ -143,6 +152,16 @@
                 app:layout_constraintBottom_toBottomOf="@+id/layout_from"
         />
 
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                app:layout_constraintTop_toBottomOf="@+id/select_from"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="To"
+        />
+
         <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/select_to"
                 android:layout_width="wrap_content"
@@ -151,7 +170,7 @@
                 android:selectedItemPosition="@={viewModel.selectedToPosition}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guidelineV"
-                app:layout_constraintTop_toBottomOf="@+id/select_from"
+                app:layout_constraintTop_toBottomOf="@+id/label_to"
         />
 
         <com.google.android.material.textfield.TextInputLayout

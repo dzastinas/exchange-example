@@ -30,6 +30,7 @@ class ExchangeViewModel(
     val from = MutableLiveData<String>()
 
     init {
+        selectedToPosition.postValue(1) // preselect
         loadBalance()
     }
 
