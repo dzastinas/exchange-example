@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Exchange</string>
+    <string name="fetching_data">Fetching data…</string>
+    <string name="app_title">exercise</string>
+    <string name="server">SERVER</string>
+    <string name="distance">DISTANCE</string>
+    <string name="from">From</string>
+    <string name="to">to</string>
+    <string name="exchange">Exchange</string>
+    <string name="total_fee">Total fee</string>
+    <string name="balance">Balance</string>
+
+    <string name="EUR">EUR</string>
+    <string name="USD">USD</string>
+    <string name="JPY">JPY</string>
+    <string name="reset">Reset</string>
+</resources>

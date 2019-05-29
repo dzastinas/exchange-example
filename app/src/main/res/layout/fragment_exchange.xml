@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context="net.justinas.minitemplate.view.ListViewFragment">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="net.justinas.exercise.lib.view.ExchangeViewModel"/>
+
+        <import type="net.justinas.exercise.lib.domain.data.Currency"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.3"
+                android:orientation="vertical"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineV5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.5"
+                android:orientation="vertical"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.2"
+                android:orientation="horizontal"/>
+
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:title="@string/app_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@android:drawable/ic_menu_mapmode"
+                app:titleTextColor="@color/colorPrimaryDark"
+                tools:title="Exchange"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/balance"
+                app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
+                tools:text="Balance"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_fee"
+                app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Total fee"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/currency_eur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.getBalance(viewModel.balance, Currency.valueOf(`EUR`))}"
+                app:layout_constraintTop_toTopOf="@+id/guidelineH"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
+                tools:text="EUR"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/currency_usd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.getBalance(viewModel.balance, Currency.valueOf(`USD`))}"
+                app:layout_constraintTop_toBottomOf="@+id/currency_eur"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
+                tools:text="USD"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/currency_jpy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.getBalance(viewModel.balance, Currency.valueOf(`JPY`))}"
+                app:layout_constraintTop_toBottomOf="@+id/currency_usd"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
+                tools:text="JPY"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fee_eur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.getTotalFee(viewModel.balance, Currency.valueOf(`EUR`))}"
+                app:layout_constraintTop_toTopOf="@+id/guidelineH"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="EUR"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fee_usd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.getTotalFee(viewModel.balance, Currency.valueOf(`USD`))}"
+                app:layout_constraintTop_toBottomOf="@+id/fee_eur"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="USD"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fee_jpy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.getTotalFee(viewModel.balance, Currency.valueOf(`JPY`))}"
+                app:layout_constraintTop_toBottomOf="@+id/fee_usd"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="JPY"
+        />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/select_from"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:entries="@array/currencies_array"
+                android:selectedItemPosition="@={viewModel.selectedFromPosition}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineV"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_from"
+        />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/select_to"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:entries="@array/currencies_array"
+                android:selectedItemPosition="@={viewModel.selectedToPosition}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineV"
+                app:layout_constraintTop_toBottomOf="@+id/select_from"
+        />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidelineV"
+                app:layout_constraintTop_toBottomOf="@+id/currency_jpy"
+                app:counterMaxLength="8"
+                app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/from"
+                    android:digits="1234567890."
+                    android:maxLength="8"
+                    android:inputType="number"
+                    app:fieldText="@={viewModel.from}"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+                android:id="@+id/checkout"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:text="@string/exchange"
+                android:textColor="@color/primaryTextColor"
+                android:onClick="@{()->viewModel.exchange()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/select_to"/>
+
+        <Button
+                android:id="@+id/reset"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:text="@string/reset"
+                android:textColor="@color/primaryTextColor"
+                android:onClick="@{()->viewModel.reset()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkout"/>
+
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/CustomProgressBar"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:showLoading="@{viewModel.result}"
+                app:showUserSnack="@{viewModel.result}"
+                app:showDialog="@{viewModel.result}"
+                android:clickable="true"
+                android:visibility="gone"
+                tools:visibility="gone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

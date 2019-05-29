@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currencies_array">
+        <item>@string/EUR</item>
+        <item>@string/USD</item>
+        <item>@string/JPY</item>
+    </string-array>
+
+</resources>
