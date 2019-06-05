@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@android:color/white</item>
         <item name="editTextStyle">@style/EditAppTheme</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -30,7 +30,7 @@
     </style>
 
     <style name="EditAppTheme" parent="Base.Widget.MaterialComponents.TextInputEditText">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@android:color/white</item>
         <item name="android:textCursorDrawable">@null</item>
     </style>
 
